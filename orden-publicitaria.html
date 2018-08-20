@@ -8,36 +8,133 @@
 			margin: 0;
 			padding: 0;
 			font-family: sans-serif;
-			font-size: 12px;
+			font-size: 11px;
+		}
+		table {
+			width: 100%;
+		}
+		td, th {
+			padding: 0;
 		}
 		table.table {
-			border: 1px solid #ddd;
+			border: 1px solid #aaa;
 			border-collapse: collapse;
 		}
 		table.table td, table.table th {
-			border: 1px solid #ddd;
+			border: 1px solid #aaa;
+			padding: 2px 3px;
 			border-collapse: collapse;	
+		}
+		table.table tfoot td, table.table tfoot th{
+			font-weight: 600;
+		}
+		h1 {
+			font-size: 20px;			
+			text-decoration: underline;
+		}
+		p {
+			margin: 0;
+		}
+		.uppercase {
+			text-transform: uppercase;
+		}
+		.header {
+			font-size: 14px;
+			padding: 6px 8px !important;
+		}
+		.header-gray {
+			background-color: #e5e5e5;
+			font-size: 14px;
+			padding: 6px 8px !important;
+		}
+		.gray {
+			background-color: #e5e5e5;
+		}
+		.m-b-10 {
+			margin-bottom: 10px;
+		}
+		.text-left {
+			text-align: left;
+		}
+		.text-center {
+			text-align: center;
+		}
+		.text-right {
+			text-align: right;
+		}
+		.v-top {
+			vertical-align: top;
+		}
+		.width-dia {
+			width: 1.8%;
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+		.separator {
+			border-top: 2px solid #777;
+		}
+		.width-2 {
+			width: 2%;
+		}
+		.width-3 {
+			width: 3%;
+		}
+		.width-4 {
+			width: 4%;
+		}
+		.width-5 {
+			width: 5%;
+		}
+		.width-6 {
+			width: 6%;
+		}
+		.width-7 {
+			width: 7%;
+		}
+		.width-8 {
+			width: 8%;
+		}
+		.width-9 {
+			width: 9%;
+		}
+		.width-10 {
+			width: 10%;
+		}
+		.width-20 {
+			width: 20%;
+		}
+		.width-30 {
+			width: 30%;
+		}
+		.width-35 {
+			width: 35%;
+		}
+		.width-40 {
+			width: 40%;
+		}
+		.width-50 {
+			width: 50%;
 		}
 	</style>
 </head>
 <body>
 	<div class="container">
-		<h1>{{ titulo }}</h1>
+		<h1 class="text-center uppercase">{{ titulo }}</h1>
 		<table>
 			<tr>
-				<td>
+				<td class="width-50">
 					<!-- detalle izquierdo -->
-					<table class="table">
+					<table class="table m-b-10">
 						<thead>
 							<tr>
-								<th></th>
-								<th colspan="2">{{ orden.canal.nombre }} - CANAL {{ orden.canal.numero }}</th>
+								<th class="width-40"></th>
+								<th colspan="2" class="header-gray">{{ orden.canal.nombre }} - CANAL {{ orden.canal.numero }}</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th>ENCARGADO COMERCIAL</th>
-								<td colspan="2">
+								<th class="text-left">ENCARGADO COMERCIAL</th>
+								<td colspan="2" class="text-center">
 									{{ orden.encargado.nombre }} 
 									{{#if orden.encargado.celular}}
 									 	<span>CEL. {{ orden.encargado.celular }}</span>	
@@ -45,89 +142,89 @@
 								</td>									
 							</tr>
 							<tr>
-								<th>CORREO ELECTRONICO</th>
-								<td colspan="2">
+								<th class="text-left">CORREO ELECTRONICO</th>
+								<td colspan="2" class="text-center">
 								{{#each orden.correos}}
 									<p>{{correo}}</p>
 								{{/each}}
 								</td>
 							</tr>
 							<tr>
-								<th>CAMPAÑA</th>
-								<td colspan="2">{{ orden.campana }}</td>
+								<th class="text-left">CAMPAÑA</th>
+								<td colspan="2" class="text-center uppercase"><strong>{{ orden.campana }}</strong></td>
 							</tr>
 							<tr>
-								<th>SPOT</th>
-								<td colspan="2">{{ orden.spot }}</td>
+								<th class="text-left">SPOT</th>
+								<td colspan="2" class="text-center">{{ orden.spot }}</td>
 							</tr>
 							<tr>
-								<th>DURACIÓN</th>
-								<td>{{ orden.duracion.tiempo }}</td>
-								<td>{{ orden.duracion.tipo }}</td>
+								<th class="text-left">DURACIÓN</th>
+								<td class="text-center width-30">{{ orden.duracion.tiempo }}</td>
+								<td class="text-center width-30">{{ orden.duracion.tipo }}</td>
 							</tr>
 							<tr>
-								<th>MINISTERIO DE COMUNICACIÓN</th>
-								<td colspan="2"></td>
+								<th class="text-left">MINISTERIO DE COMUNICACIÓN</th>
+								<td colspan="2" class="text-center"></td>
 							</tr>
 							<tr>
-								<th>FECHA</th>
-								<td colspan="2">{{ orden.fecha }}</td>
+								<th class="text-left">FECHA</th>
+								<td colspan="2" class="text-center">{{ orden.fecha }}</td>
 							</tr>
 							<tr>
-								<th>COBERTURA</th>
-								<td colspan="2">{{ orden.cobertura }}</td>
+								<th class="text-left">COBERTURA</th>
+								<td colspan="2" class="text-center">{{ orden.cobertura }}</td>
 							</tr>
 						</tbody>
 					</table>
 				</td>
-				<td>
+				<td class="width-20">
 					&nbsp; <!-- espacio -->
 				</td>
-				<td>
+				<td class="v-top width-30">
 					<!-- detalle derecho -->
 					<table class="table">
 						<thead>
 							<tr>
-								<th>{{ orden.odp.tipo }} N°</th>
-								<th>{{ orden.odp.numero }}</th>
+								<th class="header width-40">{{ orden.odp.tipo }} N°</th>
+								<th class="header-gray">{{ orden.odp.numero }}</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<th>FECHA</th>
-								<td>{{ orden.fecha }}</td>
+								<td class="text-center">{{ orden.fecha }}</td>
 							</tr>
 						</tbody>
 					</table>
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td colspan="3">
 					<!-- tabla principal -->
-					<table class="table">
+					<table class="table m-b-10">
 						<thead>
 							<tr>
 								<th colspan="3" rowspan="2"></th>
-								<th colspan="{{ detalle.dias.length }}">
+								<th colspan="{{ detalle.dias.length }}" class="gray">
 									{{ detalle.mes }}
 								</th>
 								<th colspan="4">TOTAL</th>
 							</tr>
 							<tr>
 								{{#each detalle.dias}}
-									<th>{{ dia }}</th>
+									<th class="width-dia">{{ dia }}</th>
 								{{/each}}
-								<th>TOTAL</th>
-								<th>SEG.</th>
-								<th>BS</th>
-								<th>TOTAL</th>
+								<th class="width-4">TOTAL</th>
+								<th class="width-4">SEG.</th>
+								<th class="width-4">BS</th>
+								<th class="width-6">TOTAL</th>
 							</tr>
 							<tr>
 								<th></th>
-								<th>HORA</th>
+								<th class="width-8">HORA</th>
 								<th>PROGRAMA</th>
 								{{#each detalle.dias}}
-									<th>{{literal}}</th>
+									<th class="width-dia">{{literal}}</th>
 								{{/each}}
 								<th>PASES</th>
 								<th>SPOT</th>
@@ -137,20 +234,54 @@
 						</thead>
 						<tbody>
 						{{#each detalle.items}}
-							<tr>
-								<td></td>
-								<td>{{ hora.inicio }} - {{ hora.fin }}</td>
+							<tr {{#if rowspan}}class="separator"{{/if}}>
+								{{#if rowspan}}
+							    <td rowspan="{{rowspan}}">{{tipo}}</td>
+							  {{/if}}
+								<td class="text-center">{{ hora.inicio }} - {{ hora.fin }}</td>
 								<td>{{ programa }}</td>
 								{{#each dias}}
-									<td>{{ cantidad }}</td>
+									<td class="width-dia text-center {{ class }}">{{ cantidad }}</td>
 								{{/each}}
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td class="text-center">{{ pases }}</td>
+								<td class="text-center">{{ tiempo_spot }}</td>
+								<td class="text-right">{{ precio_segundo }}</td>
+								<td class="text-center">{{ costo_total }}</td>
 							</tr>
 						{{/each}}
 						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="3"></td>
+								{{#each total.items}}
+									<td class="text-center">{{ cantidad }}</td>
+								{{/each}}
+								<td class="text-center">{{ total.pases }}</td>
+							</tr>
+						</tfoot>
+					</table>
+					<table>
+						<tr>
+							<td class="width-50 v-top">
+								<table class="table">
+									<tr>
+										<th class="text-left">Observaciones</th>
+									</tr>
+									<tr>
+										<td>{{ orden.observaciones }}</td>
+									</tr>
+								</table>
+							</td>
+							<td class="width-20">&nbsp;</td>
+							<td class="width-30 v-top">
+								<table class="table">
+									<tr>
+										<th class="width-50">LÍQUIDO PAGABLE Bs.</th>
+										<th class="header-gray text-center">0,00</th>
+									</tr>
+								</table>
+							</td>
+						</tr>
 					</table>
 				</td>
 			</tr>

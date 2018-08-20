@@ -44,7 +44,8 @@ app.get('/orden', function (req, res) {
       odp: {
         tipo: 'ODPTV',
         numero: '3017/2018'
-      } 
+      },
+      observaciones: 'Ninguna'
     },
     detalle: {
       mes: meses[mes - 1],
@@ -58,6 +59,36 @@ app.get('/orden', function (req, res) {
             fin: '09:00'
           },
           programa: 'Levántate Bolivia',
+          dias: [
+            {
+              dia: 5,
+              cantidad: 1
+            },
+            {
+              dia: 6,
+              cantidad: 1
+            },
+            {
+              dia: 9,
+              cantidad: 1
+            },
+            {
+              dia: 10,
+              cantidad: 1
+            }
+          ],
+          pases: 4,
+          tiempo_spot: 59,
+          precio_segundo: 25.00,
+          costo_total: 1475
+        },
+        {
+          tipo: 'LUN-VIE',
+          hora: {
+            inicio: '06:30',
+            fin: '09:00'
+          },
+          programa: 'Levántate Bolivia 2',
           dias: [
             {
               dia: 5,
@@ -194,16 +225,51 @@ app.get('/orden', function (req, res) {
     'DOMINGO': 0
   };
 
+  let total = [];
+  let totalPases = 0;
   data.detalle.items.map(item => {
     tipos[item.tipo]++;
     item.dias = setDias(item.dias, length);
+    total = totales(item.dias, total);
+    totalPases += item.pases;
+    return item;
+  });
+  let tipo = '';
+  data.detalle.items.map(item => {
+    if (item.tipo !== tipo) {
+      tipo = item.tipo;
+      item.rowspan = tipos[tipo];
+    }
+    setClass(item.dias, total);
     return item;
   });
   data.tipos = tipos;
-
+  data.total = {
+    items: total,
+    pases: totalPases
+  };
+  
   let salida = render('orden-publicitaria.html', data);
   res.send(salida);
 });
+
+function totales (items, total) {
+  if (total.length === 0) {
+    let array = [];
+    for (let i in items) {
+      array.push({
+        dia: items[i].dia,
+        cantidad: items[i].cantidad ? items[i].cantidad : 0
+      });
+    }
+    total = array;
+  } else {
+    for (let i in total) {
+      total[i].cantidad += items[i].cantidad ? parseInt(items[i].cantidad) : 0;
+    }
+  }
+  return total;
+}
 
 function render (file, data) {
   let source = fs.readFileSync(file, 'utf-8');
@@ -232,6 +298,12 @@ function setDias(items, length) {
     });
   }
   return array;
+}
+
+function setClass(items, total) {
+  for (let i in total) {
+    items[i].class = total[i].cantidad ? 'gray' : ''
+  }
 }
 
 function obtenerCantidad(dia, items) {
