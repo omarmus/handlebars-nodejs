@@ -14,6 +14,131 @@ handlebars.registerHelper('ifIndex', function(arg1, arg2, options) {
 
 let app = express();
 
+app.use(express.static('public'));
+
+app.get('/form', function (req, res) {
+  let data = {
+    solicitud: {
+      cite: 'UD/PRE-080/17',
+      fecha: '14/11/2018'
+    },
+    unidad_solicitante: 'DIRECCIÓN GENERAL DE ESTRATEGIAS/UNIDAD DE DIFUSIÓN',
+    objetivo: {
+      contratacion: 'DERECHO A LA INFORMACIÓN - MENOS POBREZA, MÁS DIGNIDAD',
+      modalidad: {
+        licitacion: true,
+        anpe: true,
+        cont_menor: false,
+        cont_directa: true,
+        cont_excepcion: true,
+        otras: false
+      },
+      forma: {
+        total: true,
+        items: false,
+        lotes: true
+      },
+      metodo: {
+        precio: true,
+        calidad_costo: false,
+        menor_costo: false,
+        presupuesto: true,
+        calidad: false,
+        no_aplica: true,
+      },
+      items: [
+        {
+          item: 1,
+          detalle: 'AEROTAM',
+          unidad: 'ARTE',
+          cantidad: '1 PÁGINA',
+          precio: '-',
+          total: 123
+        },
+        {
+          item: 2,
+          detalle: 'AEROTAM',
+          unidad: 'ARTE',
+          cantidad: '1 PÁGINA',
+          precio: '-',
+          total: 123
+        },
+        {
+          item: 3,
+          detalle: 'AEROTAM',
+          unidad: 'ARTE',
+          cantidad: '1 PÁGINA',
+          precio: '-',
+          total: 123
+        },
+        {
+          item: 4,
+          detalle: 'AEROTAM',
+          unidad: 'ARTE',
+          cantidad: '1 PÁGINA',
+          precio: '-',
+          total: 123
+        },
+        {
+          item: 5,
+          detalle: 'AEROTAM',
+          unidad: 'ARTE',
+          cantidad: '1 PÁGINA',
+          precio: '-',
+          total: 123
+        },
+        {
+          item: 6,
+          detalle: 'AEROTAM',
+          unidad: 'ARTE',
+          cantidad: '1 PÁGINA',
+          precio: '-',
+          total: 123
+        },
+        {
+          item: 7,
+          detalle: 'AEROTAM',
+          unidad: 'ARTE',
+          cantidad: '1 PÁGINA',
+          precio: '-',
+          total: 123
+        }
+      ]
+    },
+    verificacion: {
+
+    },
+    poa: {
+      fecha: '01/01/2018',
+      numero: '1234',
+      objetivo: '26',
+      meta: '165',
+      partida: '255',
+      area: 'U DIF'
+    },
+    certificacion: {
+      fecha: '29/06/2018',
+      numero: '12',
+      partida: '33',
+      act: '4',
+      fuente: '456',
+      observaciones: 'Ninguna'
+    },
+    autorizacion: {
+      compra: '123',
+      servicio: '33',
+      contrato: '342',
+      fecha: '24/07/1983',
+      codigo: 'A-001'
+    }
+  };
+  let total = 0;
+  data.objetivo.items.map(item => (total += item.total));
+  data.objetivo.total = total;
+  let salida = render('solicitud-contratacion.html', data);
+  res.send(salida);
+});
+
 app.get('/orden', function (req, res) {
   const mes = 7;
   const gestion = 2018;
@@ -187,6 +312,35 @@ app.get('/orden', function (req, res) {
           precio_segundo: 25.00
         },
         {
+          tipo: 'SABADO',
+          hora: {
+            inicio: '06:30',
+            fin: '09:00'
+          },
+          programa: 'Sonso & marraqueta',
+          dias: [
+            {
+              dia: 7,
+              cantidad: 1
+            }
+          ],
+          pases: 5,
+          tiempo_spot: 59,
+          precio_segundo: 25.00
+        },
+        {
+          tipo: 'SABADO',
+          hora: {
+            inicio: '06:30',
+            fin: '09:00'
+          },
+          programa: 'Full pesca',
+          dias: [],
+          pases: 0,
+          tiempo_spot: 59,
+          precio_segundo: 25.00
+        },
+        {
           tipo: 'DOMINGO',
           hora: {
             inicio: '06:30',
@@ -199,6 +353,34 @@ app.get('/orden', function (req, res) {
           precio_segundo: 25.00
         },
         {
+          tipo: 'DOMINGO',
+          hora: {
+            inicio: '06:30',
+            fin: '09:00'
+          },
+          programa: 'Full pesca',
+          dias: [],
+          pases: 0,
+          tiempo_spot: 59,
+          precio_segundo: 25.00
+        },
+        {
+          tipo: 'DOMINGO',
+          hora: {
+            inicio: '06:30',
+            fin: '09:00'
+          },
+          programa: 'Sonso & marraqueta',
+          dias: [
+            {
+              dia: 8,
+              cantidad: 1
+            }
+          ],
+          pases: 7,
+          tiempo_spot: 59,
+          precio_segundo: 25.00
+        },{
           tipo: 'DOMINGO',
           hora: {
             inicio: '06:30',

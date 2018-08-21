@@ -3,119 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Orden Publicitaria de televisión</title>
-	<style type="text/css">
-		body {
-			margin: 0;
-			padding: 0;
-			font-family: sans-serif;
-			font-size: 11px;
-		}
-		table {
-			width: 100%;
-		}
-		td, th {
-			padding: 0;
-		}
-		table.table {
-			border: 1px solid #aaa;
-			border-collapse: collapse;
-		}
-		table.table td, table.table th {
-			border: 1px solid #aaa;
-			padding: 2px 3px;
-			border-collapse: collapse;	
-		}
-		table.table tfoot td, table.table tfoot th{
-			font-weight: 600;
-		}
-		h1 {
-			font-size: 20px;			
-			text-decoration: underline;
-		}
-		p {
-			margin: 0;
-		}
-		.uppercase {
-			text-transform: uppercase;
-		}
-		.header {
-			font-size: 14px;
-			padding: 6px 8px !important;
-		}
-		.header-gray {
-			background-color: #e5e5e5;
-			font-size: 14px;
-			padding: 6px 8px !important;
-		}
-		.gray {
-			background-color: #e5e5e5;
-		}
-		.m-b-10 {
-			margin-bottom: 10px;
-		}
-		.text-left {
-			text-align: left;
-		}
-		.text-center {
-			text-align: center;
-		}
-		.text-right {
-			text-align: right;
-		}
-		.v-top {
-			vertical-align: top;
-		}
-		.width-dia {
-			width: 1.8%;
-			padding-left: 0 !important;
-			padding-right: 0 !important;
-		}
-		.separator {
-			border-top: 2px solid #777;
-		}
-		.width-2 {
-			width: 2%;
-		}
-		.width-3 {
-			width: 3%;
-		}
-		.width-4 {
-			width: 4%;
-		}
-		.width-5 {
-			width: 5%;
-		}
-		.width-6 {
-			width: 6%;
-		}
-		.width-7 {
-			width: 7%;
-		}
-		.width-8 {
-			width: 8%;
-		}
-		.width-9 {
-			width: 9%;
-		}
-		.width-10 {
-			width: 10%;
-		}
-		.width-20 {
-			width: 20%;
-		}
-		.width-30 {
-			width: 30%;
-		}
-		.width-35 {
-			width: 35%;
-		}
-		.width-40 {
-			width: 40%;
-		}
-		.width-50 {
-			width: 50%;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="http://localhost:3030/css/main.css">
 </head>
 <body>
 	<div class="container">
@@ -236,7 +124,9 @@
 						{{#each detalle.items}}
 							<tr {{#if rowspan}}class="separator"{{/if}}>
 								{{#if rowspan}}
-							    <td rowspan="{{rowspan}}">{{tipo}}</td>
+							    <td rowspan="{{rowspan}}" class="rotate">
+							    	<div><span>{{tipo}}</span></div>
+							    </td>
 							  {{/if}}
 								<td class="text-center">{{ hora.inicio }} - {{ hora.fin }}</td>
 								<td>{{ programa }}</td>
